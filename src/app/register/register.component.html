@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <nav>
+    <div class="row bg-light shadow p-3 bg-white">
+      <div class="col-sm-7">
+        <i class="fa-solid fa-camera me-3"></i><b>PHOTOGRAPHERS HUB</b>
+      </div>
+      <div class="enr col-sm-3">
+        <a routerLink="/login"><b>ENROLL AS PHOTOGRAPHER</b></a>
+      </div>
+      <div class="col-sm-2 dropdown">
+        <button class="dropbtn"><i class="fa fa-user"></i></button>
+        <div class="dropdown-content">
+          <a routerLink="/login">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="card mt-5 rounded-4 shadow box-area p-5 bg-white">
+  <form
+    [formGroup]="Registerform"
+    (ngSubmit)="submit(Registerform)"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <fieldset>
+      <legend>REGISTER:</legend>
+      <div class="row1">
+        <div class="profile-pic">
+          <img class="img-circle" [src]="url" id="output" accept="images/*" />
+          <input
+            type="file"
+            id="file"
+            name="image"
+            formControlName="image"
+            (change)="loadFile($event)"
+          />
+          <br />
+          <label for="file">Upload</label>
+        </div>
+        <br />
+        <div class="mb-3">
+          <input
+            type="text"
+            placeholder="Enter user name"
+            formControlName="username"
+            required
+          /><br />
+        </div>
+        <div class="mb-4">
+          <input
+            type="password"
+            placeholder="Enter password"
+            formControlName="password"
+            required
+          /><br />
+        </div>
+
+        <div class="mb-4">
+          <input
+            type="password"
+            placeholder="Re Enter password"
+            formControlName="repassword"
+            required
+          />
+          <br />
+        </div>
+        <div class="mb-4">
+          <input
+            type="email"
+            placeholder="enter email"
+            formControlName="email"
+            required
+          />
+          <span
+            style="color: rgb(232, 225, 225); background-color: red"
+            *ngIf="email1 && email1.invalid && email1.touched"
+            >* email is required</span
+          ><br />
+        </div>
+        <div class="mb-4">
+          <input
+            type="tel"
+            placeholder="Enter phone number"
+            formControlName="phone"
+            required
+          /><br />
+        </div>
+
+        <div class="btn1">
+          <button
+            class="btn border-info"
+            type="submit"
+            [disabled]="!Registerform.valid"
+          >
+            submit
+          </button>
+        </div>
+        <div>
+          <p>Already have an account?<a routerLink="/login">Login</a></p>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

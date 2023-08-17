@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <nav>
+    <div class="row bg-light shadow p-3 bg-white">
+      <div class="col-sm-7">
+        <i class="fa-solid fa-camera me-3"></i><b>PHOTOGRAPHERS HUB</b>
+      </div>
+
+      <div class="enr col-sm-3">
+        <a routerLink="/login"><b>ENROLL AS PHOTOGRAPHER</b></a>
+      </div>
+      <div class="col-sm-2 dropdown">
+        <button class="dropbtn"><i class="fa fa-user"></i></button>
+        <div class="dropdown-content">
+          <a routerLink="" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="container1">
+  <div class="search">
+    <input
+      type="search"
+      [(ngModel)]="title"
+      class="searchTerm"
+      placeholder="Filter By name,email......."
+    />
+  </div>
+  <br />
+  <div *ngFor="let s of profiledata">
+    <div *ngIf="s._id == searchText">
+      <div class="container">
+        <img src="{{ s.image }}" />
+        <div class="details1 col-sm-5">
+          <label style="display: none">ID:</label>
+          <span style="display: none"> {{ s._id }}</span
+          ><br />
+          <label>Name:</label> <span> {{ s.username }}</span
+          ><br />
+          <label>Phone:</label> <span> {{ s.phone }}</span
+          ><br />
+          <label>Email:</label> <span> {{ s.email }}</span>
+        </div>
+        <div class="view1 col-sm-2">
+          <button class="btn btn-secondary" (click)="edit(s.username)">
+            Edit Profile
+          </button>
+        </div>
+        <div class="view2 col-sm-2">
+          <button class="btn btn-secondary" (click)="Mybookings(s.username)">
+            MyAppointments
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngFor="
+      let s of profiledata
+        | filter : title
+        | paginate : { itemsPerPage: count, currentPage: p }
+    "
+  >
+    <div *ngIf="s._id != searchText">
+      <div class="container">
+        <img src="{{ s.image }}" />
+        <div class="details col-sm-6">
+          <label>Name:</label> <span> {{ s.username }}</span
+          ><br />
+          <label>Phone:</label> <span> {{ s.phone }}</span
+          ><br />
+          <label>Email:</label> <span> {{ s.email }}</span>
+        </div>
+        <div class="view col-md-2">
+          <button class="btn btn-secondary" (click)="view(s.username)">
+            viewprofile
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

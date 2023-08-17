@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <nav>
+    <div class="row bg-light shadow p-3 bg-white">
+      <div class="col-sm-7">
+        <i class="fa-solid fa-camera me-3"></i><b>PHOTOGRAPHERS HUB</b>
+      </div>
+
+      <div class="enr col-sm-3">
+        <a routerLink="/login"><b>ENROLL AS PHOTOGRAPHER</b></a>
+      </div>
+      <div class="col-sm-2 dropdown">
+        <button class="dropbtn"><i class="fa fa-user"></i></button>
+        <div class="dropdown-content">
+          <a routerLink="" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<br />
+<h3>My Appointments</h3>
+<br />
+<div class="container1">
+  <div class="card" *ngFor="let s of arr; let i = index">
+    <div class="appnt">
+      <label>Name:</label> <span>{{ s.username1 }}</span
+      ><br />
+      <label>Phone:</label> <span>{{ s.phone1 }}</span
+      ><br />
+      <label>Email:</label> <span>{{ s.email1 }}</span
+      ><br />
+      <label>Event:</label> <span>{{ s.Event }}</span
+      ><br />
+      <label>date:</label> <span>{{ s.date }}</span
+      ><br />
+    </div>
+  </div>
+</div>

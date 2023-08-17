@@ -1,0 +1,71 @@
+
+<div class="container-fluid">
+  <nav>
+    <div class="row bg-light shadow p-3 bg-white">
+      <div class="col-sm-7">
+        <i class="fa-solid fa-camera me-3"></i><b>PHOTOGRAPHERS HUB</b>
+      </div>
+
+      <div class="enr col-sm-3">
+        <a routerLink="/login"><b>ENROLL AS PHOTOGRAPHER</b></a>
+      </div>
+      <div class="col-sm-2 dropdown">
+        <button class="dropbtn"><i class="fa fa-user"></i></button>
+        <div class="dropdown-content">
+          <a routerLink="" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+<div class="card mt-5 rounded-4 shadow box-area p-5 bg-white">
+  <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm)">
+    <fieldset>
+      <legend>LOGIN FORM:</legend>
+      <div class="row">
+        <div class="mb-3">
+          <input
+            type="text"
+            placeholder="Enter user name"
+            formControlName="username"
+            required
+          /><br />
+          <span
+            style="color: red"
+            *ngIf="username && username.invalid && username.touched"
+            >username is required</span
+          >
+        </div>
+        <div class="mb-4">
+          <input
+            class="bg-light"
+            type="password"
+            placeholder="Enter password"
+            formControlName="password"
+            required
+          /><br />
+          <span
+            style="color: red"
+            *ngIf="password && password.invalid && password.touched"
+            >password is required</span
+          >
+        </div>
+
+        <div class="btn1">
+          <button
+            class="btn border-info"
+            type="submit"
+            [disabled]="!loginForm.valid"
+          >
+            Submit
+          </button>
+        </div>
+        <div>
+          <p>Dont have an account?<a routerLink="/register">Register</a></p>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

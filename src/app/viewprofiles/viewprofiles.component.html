@@ -1,0 +1,179 @@
+<div class="container-fluid">
+  <nav>
+    <div class="row bg-light shadow p-3 bg-white">
+      <div class="col-sm-7">
+        <i class="fa-solid fa-camera me-3"></i><b>PHOTOGRAPHERS HUB</b>
+      </div>
+
+      <div class="enr col-sm-3">
+        <a routerLink="/login"><b>ENROLL AS PHOTOGRAPHER</b></a>
+      </div>
+      <div class="col-sm-2 dropdown">
+        <button class="dropbtn"><i class="fa fa-user"></i></button>
+        <div class="dropdown-content">
+          <a routerLink="" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<br />
+<div class="container">
+  <img src="{{ this.image }}" />
+  <div class="details1 col-sm-6">
+    <br />
+    <label>Name:</label> <span> {{ username }}</span
+    ><br />
+    <label>Phone:</label> <span> {{ phone }}</span
+    ><br />
+    <label>Email:</label> <span> {{ email }}</span>
+  </div>
+  <div class="view1 col-sm-2">
+    <button class="btn btn-secondary" (click)="Booking(username)">
+      Book Now
+    </button>
+  </div>
+</div>
+
+<h3>{{ username }}'s Photography</h3>
+
+<div class="container1">
+  <div class="container2" *ngFor="let s of arr; let i = index">
+    <img src="{{ s }}" />
+  </div>
+</div>
+
+<div class="pop-up" *ngIf="show">
+  <div class="card">
+    <div class="close" (click)="closepopup()">
+      &times;
+    </div>
+    <h3>STEP-1</h3>
+    <form
+      [formGroup]="Reserve"
+      (ngSubmit)="submit(Reserve)"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      
+        <div class="column">
+          <label>Name:</label>
+          <span>
+            <input type="text" formControlName="username1" required
+          /></span>
+          <label>Phone:</label>
+          <span><input type="tel" formControlName="phone1" maxlength="10" required /></span>
+        </div>
+        <br />
+
+        <div class="column">
+          <label>Email:</label>
+          <span> <input type="email" formControlName="email1" required /></span>
+          <label>City:</label>
+          <span> <input type="text" formControlName="City" required /></span>
+        </div>
+        <br />
+        <div class="column1">
+          <label>Yours Photographer:</label>
+          <span>
+            <input type="text" [disabled]="isdisabled" value="{{ username }}"
+          /></span>
+        </div>
+        <br />
+        <div class="column1">
+          <label>Event</label>
+          <span> <input type="text" formControlName="Event" required /></span>
+        </div>
+        <br />
+        <div class="column1">
+          <label>Time Slot:</label>
+          <span>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              [min]="now"
+              formControlName="date"
+              required
+          /></span>
+        </div>
+
+        <div class="column1">
+          <button
+            class="btn border-info"
+            type="submit"
+            [disabled]="!Reserve.valid"
+          >
+            Reserve
+          </button>
+        </div>
+    
+    </form>
+  </div>
+</div>
+
+<div class="container3">
+  <div class="smallbar">
+    <i class="fa-solid fa-camera me-3"></i><b>PHOTOGRAPHERS HUB</b>
+  </div>
+  <br />
+  <div class="container4">
+    <div class="footers">
+      <h4>Get Connected</h4>
+      <div class="footer1">
+        <a href="#">Enroll as photographer</a><br />
+        <a href="#">Blogs</a><br />
+        <a href="#">News</a><br />
+        <a href="#">Dashboard</a><br />
+      </div>
+    </div>
+    <div class="footers">
+      <h4>Resources</h4>
+      <div class="footer1">
+        <a href="#">Support</a><br />
+        <a href="#">Support Hardware</a><br />
+        <a href="#">Docs</a><br />
+        <a href="#">Using Photographer hub</a><br />
+      </div>
+    </div>
+    <div class="footers">
+      <h4>Company</h4>
+      <div class="footer1">
+        <a href="#">About us</a><br />
+        <a href="#">Careers</a><br />
+        <a href="#">PartnerShips</a><br />
+        <a href="#">Slogans</a><br />
+      </div>
+    </div>
+    <div class="footers">
+      <h4>Social</h4>
+      <div class="footer1">
+        <a href="#">Twitter</a><br />
+        <a href="#">Facebook</a><br />
+        <a href="#">Linkedin</a><br />
+        <a href="#">Github</a><br />
+      </div>
+    </div>
+    <div class="footers">
+      <h4>Developers</h4>
+      <div class="footer1">
+        <a href="#">Forum</a><br />
+        <a href="#">Projects</a><br />
+        <a href="#">Open Source</a><br />
+      </div>
+    </div>
+  </div>
+  <br />
+  <hr />
+  <div class="container5">
+    <div class="copyright">
+      <label>@2023 Photographers hub</label>
+    </div>
+    <div class="copyright">
+      <a href="#">Terms</a>
+    </div>
+    <div class="copyright">
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</div>
