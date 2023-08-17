@@ -124,13 +124,13 @@ app.post("/register", upload.single("image"), async (req, res) => {
             port: 465,
             secure: true,
             auth: {
-              user: "manikumar81796@gmail.com",
-              pass: "cnnsapjgbrilpywm",
+              user: "your email",
+              pass: "yours_smtp_generated_password",
             },
           });
 
           var mailOptions = {
-            from: "manikumar81796@gmail.com",
+            from: "Your email",
             to: email,
             subject: "Sending Email using Node.js",
             html: `<div class="card"><h1>PHOTOGRAPHERS HUB</h1>
