@@ -158,7 +158,7 @@ app.post("/register", upload.single("image"), async (req, res) => {
               console.log("Email sent: " + info.response);
             }
             console.log(result);
-            res.send({ data: result });
+            res.json({ data: result });
           });
         } else console.log(err);
       });
