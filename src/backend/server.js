@@ -9,6 +9,7 @@ app.use(cookieParser());
 const bodyParser = require("body-parser");
 var nodemailer = require("nodemailer");
 app.set("view engine", "ejs");
+app.use('/',express.static('dist'));
 const UserRegistration = require("./model");
 const ProfilesData = require("./profiledata");
 const Reserve = require("./reserve");
