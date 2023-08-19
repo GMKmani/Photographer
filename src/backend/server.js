@@ -183,7 +183,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/allprofiles", verifyToken, async (req, res) => {
+app.get("/allprofiles", async (req, res) => {
   await UserRegistration.find()
     .then((retrievedata) => {
       console.log(retrievedata);
