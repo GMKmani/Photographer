@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin:[ "http:localhost:3001",
-              "https://euphonious-druid-d31c39.netlify.app",], credentials: true }));
+                      "https://resonant-cranachan-2bf325.netlify.app",], credentials: true }));
 mongoose
   .connect(
     `mongodb://Mani:Mani143@ac-pflvloi-shard-00-00.gpdkybd.mongodb.net:27017,ac-pflvloi-shard-00-01.gpdkybd.mongodb.net:27017,ac-pflvloi-shard-00-02.gpdkybd.mongodb.net:27017/mydb?ssl=true&replicaSet=atlas-6llt7d-shard-0&authSource=admin&retryWrites=true&w=majority`
@@ -187,7 +187,7 @@ app.get("/allprofiles", verifyToken, async (req, res) => {
   await UserRegistration.find()
     .then((retrievedata) => {
       console.log(retrievedata);
-      res.send({ retrievedata: retrievedata, data: req._id });
+      res.json({ retrievedata: retrievedata, data: req._id });
     })
     .catch((err) => console.log(err));
 });
