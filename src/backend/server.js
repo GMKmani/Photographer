@@ -186,7 +186,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/allprofiles/:username",,async (req, res) => {
+app.get("/allprofiles/:username",async (req, res) => {
   console.log(req.params.username);
   console.log("hello");
   await UserRegistration.find()
