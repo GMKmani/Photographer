@@ -203,8 +203,8 @@ app.delete("/del", async (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.get("/edit", verifyToken, async (req, res) => {
-  await UserRegistration.findOne({ username: req.username })
+app.get("/edit/:username", async (req, res) => {
+  await UserRegistration.findOne({ username: req.params.username })
     .then((retrievedata) => {
       console.log(req.cookies.token);
       res.send({ retrievedata: retrievedata });
@@ -212,7 +212,7 @@ app.get("/edit", verifyToken, async (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.get("/view/:user", verifyToken, async (req, res) => {
+app.get("/view/:user", async (req, res) => {
   console.log(req.params.user);
   await UserRegistration.findOne({ username: req.params.user })
     .then((retrievedata) => {
