@@ -54,6 +54,7 @@ const verifyToken = async (req, res, next) => {
       res.send({ message: "Unauthorized Access" });
     } else if (decoded) {
       req._id = decoded.userDB._id;
+       console.log(req._id);
       req.username = decoded.userDB.username;
       next();
     }
