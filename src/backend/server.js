@@ -86,7 +86,7 @@ const verifyToken = async (req, res, next) => {
 //       }
 //     }
 //   );
-// });
+// })
 
 app.post("/register", upload.single("image"), async (req, res) => {
   const path = req.file.path;
