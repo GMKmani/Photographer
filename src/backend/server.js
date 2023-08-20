@@ -48,6 +48,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const verifyToken = async (req, res, next) => {
+  console.log(req.cookies.Token);
   const token = req.cookies.Token;
   jwt.verify(token, "jeth445", (err, decoded) => {
     if (err) {
