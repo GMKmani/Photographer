@@ -177,6 +177,7 @@ app.post("/login", async (req, res) => {
       expiresIn: "2h",
     });
     res.cookie("Token", Token);
+     console.log(Token);
     res.status(200).send();
   } else {
     res.status(404).send();
