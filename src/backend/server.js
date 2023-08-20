@@ -185,7 +185,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/allprofiles", async (req, res) => {
+app.get("/allprofiles", verify,Token,async (req, res) => {
   await UserRegistration.find()
     .then((retrievedata) => {
       console.log(retrievedata);
