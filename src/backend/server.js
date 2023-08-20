@@ -186,11 +186,13 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/allprofiles", verifyToken,async (req, res) => {
+app.get("/allprofiles/:username",,async (req, res) => {
+  console.log(req.params.username);
+  console.log("hello");
   await UserRegistration.find()
     .then((retrievedata) => {
       console.log(retrievedata);
-      res.json({ retrievedata: retrievedata, data: req._id });
+      res.json({ retrievedata: retrievedata, data: req.params.username });
     })
     .catch((err) => console.log(err));
 });
