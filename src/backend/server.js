@@ -174,7 +174,7 @@ app.post("/login", async (req, res) => {
     { username },
     { _id: 1, username: 1 }
   );
-id1=userDb._id;
+id1=userDB._id;
   if (userDB) {
     let Token = jwt.sign({ userDB }, "jeth445", {
       expiresIn: "2h",
