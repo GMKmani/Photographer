@@ -21,7 +21,7 @@ const { log } = require("console");
 app.use(bodyparser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use("/", express.static("...../dist"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin: true, credentials: true }));
 mongoose
@@ -184,6 +184,7 @@ app.post("/login", async (req, res) => {
 app.get("/allprofiles", verifyToken, async (req, res) => {
   await UserRegistration.find()
     .then((retrievedata) => {
+      
       res.send({ retrievedata: retrievedata, data: req._id });
     })
     .catch((err) => console.log(err));
@@ -233,7 +234,7 @@ app.get("/payment/:user/:date", async (req, res) => {
     .catch((err) => console.log(err));
 });
 app.get("/pgdetails/:username", async (req, res) => {
-  await ProfilesData.findOne({ username: req.params.username })
+  await UserRegistration.findOne({ username: req.params.username })
     .then((retrievedata) => {
       res.send({ retrievedata: retrievedata });
     })

@@ -27,6 +27,7 @@ export class AllProfilesComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.loginService.profiles().subscribe((result) => {
+      console.log("hello");
       console.log(result.retrievedata);
       this.searchText = result.data;
       this.profiledata = result.retrievedata;
