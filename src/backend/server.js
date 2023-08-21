@@ -187,7 +187,7 @@ id1=userDB._id;
   }
 });
 
-app.get("/allprofiles/:username",async (req, res) => {
+app.get("/allprofiles",async (req, res) => {
   console.log(req.params.username);
   console.log("hello");
   await UserRegistration.find()
