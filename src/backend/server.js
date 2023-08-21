@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", express.static("...../dist"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin:["http:localhost:3001",
-                      "https://subtle-babka-c7a645.netlify.app",], credentials: true }));
+                      "https://euphonious-dolphin-0a7f60.netlify.app",], credentials: true }));
 var id1="";
 mongoose
   .connect(
