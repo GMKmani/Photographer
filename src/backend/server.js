@@ -9,6 +9,7 @@ app.use(cookieParser());
 const bodyParser = require("body-parser");
 var nodemailer = require("nodemailer");
 app.set("view engine", "ejs");
+app.use('/',express.static('dist'));
 const UserRegistration = require("./model");
 const ProfilesData = require("./profiledata");
 const Reserve = require("./reserve");
@@ -23,7 +24,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", express.static("...../dist"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin:["http:localhost:3001",
+                      "https://chipper-baklava-c22624.netlify.app",], credentials: true }));
 mongoose
   .connect(
     `mongodb://Mani:Mani143@ac-pflvloi-shard-00-00.gpdkybd.mongodb.net:27017,ac-pflvloi-shard-00-01.gpdkybd.mongodb.net:27017,ac-pflvloi-shard-00-02.gpdkybd.mongodb.net:27017/mydb?ssl=true&replicaSet=atlas-6llt7d-shard-0&authSource=admin&retryWrites=true&w=majority`
@@ -46,12 +48,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const verifyToken = async (req, res, next) => {
+  console.log(req.cookies.Token);
   const token = req.cookies.Token;
   jwt.verify(token, "jeth445", (err, decoded) => {
     if (err) {
       res.send({ message: "Unauthorized Access" });
     } else if (decoded) {
       req._id = decoded.userDB._id;
+       console.log(req._id);
       req.username = decoded.userDB.username;
       next();
     }
@@ -85,7 +89,7 @@ const verifyToken = async (req, res, next) => {
 //       }
 //     }
 //   );
-// });
+// })
 
 app.post("/register", upload.single("image"), async (req, res) => {
   const path = req.file.path;
@@ -156,7 +160,7 @@ app.post("/register", upload.single("image"), async (req, res) => {
               console.log("Email sent: " + info.response);
             }
             console.log(result);
-            res.send({ data: result });
+            res.json({ data: result });
           });
         } else console.log(err);
       });
@@ -175,13 +179,16 @@ app.post("/login", async (req, res) => {
       expiresIn: "2h",
     });
     res.cookie("Token", Token);
+     console.log(Token);
     res.status(200).send();
   } else {
     res.status(404).send();
   }
 });
 
-app.get("/allprofiles", verifyToken, async (req, res) => {
+app.get("/allprofiles/:username",async (req, res) => {
+  console.log(req.params.username);
+  console.log("hello");
   await UserRegistration.find()
     .then((retrievedata) => {
       
@@ -196,8 +203,8 @@ app.delete("/del", async (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.get("/edit", verifyToken, async (req, res) => {
-  await UserRegistration.findOne({ username: req.username })
+app.get("/edit/:username", async (req, res) => {
+  await UserRegistration.findOne({ username: req.params.username })
     .then((retrievedata) => {
       console.log(req.cookies.token);
       res.send({ retrievedata: retrievedata });
@@ -205,7 +212,7 @@ app.get("/edit", verifyToken, async (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.get("/view/:user", verifyToken, async (req, res) => {
+app.get("/view/:user", async (req, res) => {
   console.log(req.params.user);
   await UserRegistration.findOne({ username: req.params.user })
     .then((retrievedata) => {
@@ -381,5 +388,5 @@ app.get("/logout", async (req, res) => {
 });
 
 app.listen(3001, () => {
-  console.log("server running");
+  console.log("server running.......");
 });
