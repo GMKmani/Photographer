@@ -193,7 +193,7 @@ app.get("/allprofiles",async (req, res) => {
   await UserRegistration.find()
     .then((retrievedata) => {
       
-      res.send({ retrievedata: retrievedata, data: req.id1 });
+      res.send({ retrievedata: retrievedata, data:id1 });
     })
     .catch((err) => console.log(err));
 });
