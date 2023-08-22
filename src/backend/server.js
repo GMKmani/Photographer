@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", express.static("...../dist"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin:["http:localhost:3001",
-                      "https://timely-cobbler-5b8055.netlify.app",], credentials: true }));
+                      "https://friendly-moxie-800ecf.netlify.app",], credentials: true }));
 var id1="";
 mongoose
   .connect(
