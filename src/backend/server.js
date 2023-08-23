@@ -268,7 +268,7 @@ app.put("/up/:username", upload.array("image[]", 12), async (req, res) => {
   
   console.log(files);
  files.forEach((file, i) => {
-    const path = file.path;
+
     var base64str = base64_encode(file);
     image[i] = base64str;
    console.log("hi");
