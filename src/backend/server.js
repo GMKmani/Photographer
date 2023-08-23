@@ -260,6 +260,7 @@ app.get("/reserved/:username1", async (req, res) => {
 });
 
 app.put("/up/:username", upload.array("image[]", 12), async (req, res) => {
+   console.log(req.files)
   var files = req.files;
   let image = {};
   let userp = {};
