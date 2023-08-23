@@ -267,16 +267,11 @@ app.put("/up/:username", upload.array("image[]", 12), async (req, res) => {
   let res1 = [];
   
   console.log(files);
- files.forEach((file, i) => {
+  files.forEach((file, i) => {
+    const path = file.path;
+    image[i] = path.replace(/\\/g, "/");
+  });
 
-    var base64str = base64_encode(file);
-    image[i] = base64str;
-   console.log("hi");
-  }); 
-function base64_encode(file) {
-  console.log("hello");
-    return "data:image/gif;base64,"+fs.readFileSync(file, 'base64');
-}
   
   const { username, email, phone, Address, City } = req.body;
 
